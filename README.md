@@ -6,10 +6,12 @@
 
 [travis]: http://travis-ci.org/bdwyertech/bd_nxlog
 [gitter]: https://gitter.im/bdwyertech/bd_nxlog
-[license]: https://raw.githubusercontent.com/bdwyertech/bd_nxlog/master/LICENSE.txt
+[license]: https://raw.githubusercontent.com/bdwyertech/bd_nxlog/master/LICENSE
 
 ## Background
 This is a cookbook to deploy NXLog Community Edition.
+
+Rather than attempt to cover every corner case, this cookbook simply provides a resource to deploy configurations, which you can with your own templates and logic.
 
 ## Supported Platforms
   * CentOS 7
@@ -23,7 +25,9 @@ This is a cookbook to deploy NXLog Community Edition.
 ## Resources
 
 ### nxlog_config
+
 Supported Actions: `:create`, `:remove`
+
 ```ruby
 # => From Template
 nxlog_config 'syslog_forwarder' do
