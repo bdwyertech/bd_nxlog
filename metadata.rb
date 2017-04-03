@@ -10,4 +10,7 @@ issues_url 'https://github.com/bdwyertech/bd_nxlog/issues' if respond_to?(:issue
 
 source_url 'https://github.com/bdwyertech/bd_nxlog' if respond_to?(:source_url)
 
+supports 'centos'
+supports 'ubuntu'
+
 depends 'apt'
