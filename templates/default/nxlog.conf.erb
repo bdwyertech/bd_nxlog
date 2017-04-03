@@ -1,0 +1,13 @@
+## http://nxlog.org/docs
+
+########################################
+# Global directives                    #
+########################################
+User <%= node['nxlog']['user'] %>
+Group <%= node['nxlog']['group'] %>
+
+LogFile <%= node['nxlog']['log_file'] %>
+LogLevel <%= node['nxlog']['log_level'] %>
+
+# Include other configuration files
+include <%= ::File.join(node['nxlog']['conf_dir'], '*.conf') %>

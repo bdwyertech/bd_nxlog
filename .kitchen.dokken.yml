@@ -1,0 +1,82 @@
+---
+driver:
+  name: dokken
+  privileged: true # because Docker and SystemD/Upstart
+  chef_version: current
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
+verifier:
+  name: inspec
+
+#
+# Platforms
+#
+platforms:
+- name: centos-7
+  driver:
+    image: centos:7
+    platform: rhel
+    pid_one_command: /usr/lib/systemd/systemd
+    security_opt:
+      - label:enable # Enable SELinux
+    intermediate_instructions:
+      - RUN yum clean all
+      - RUN yum -y install lsof initscripts net-tools systemd-sysv wget which
+      - RUN yum -y install crontabs selinux-policy-targeted
+
+- name: ubuntu-12.04
+  driver:
+    image: ubuntu:12.04
+    pid_one_command: /sbin/init
+    intermediate_instructions:
+      - RUN /usr/bin/apt-get update
+      - RUN /usr/bin/apt-get install apt-transport-https lsb-release procps net-tools -y
+      - RUN /usr/bin/apt-get install cron -y
+
+- name: ubuntu-16.04
+  driver:
+    image: ubuntu:16.04
+    pid_one_command: /bin/systemd
+    intermediate_instructions:
+      - RUN /usr/bin/apt-get update
+      - RUN /usr/bin/apt-get install apt-transport-https lsb-release procps net-tools systemd-sysv -y
+      - RUN /usr/bin/apt-get install cron -y
+
+#
+# Test Suites
+#
+suites:
+  - name: 'default'
+    run_list:
+      - recipe[test::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
+      # nxlog:
+      #  version: '5.6'
+    includes: [
+      'centos-7',
+      'ubuntu-12.04',
+      'ubuntu-16.04'
+    ]
+
+  - name: 'resource'
+    run_list:
+      - recipe[test::resource]
+    verifier:
+      inspec_tests:
+        - test/integration/resource
+    attributes:
+      # nxlog:
+      #  version: '5.6'
+    includes: [
+      'centos-7',
+      'ubuntu-12.04',
+      'ubuntu-16.04'
+    ]

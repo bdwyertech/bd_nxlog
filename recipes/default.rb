@@ -1,3 +1,4 @@
+# Encoding: UTF-8
 #
 # Cookbook:: bd_nxlog
 # Recipe:: default
@@ -16,3 +17,65 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# => Debian Crap
+if platform_family?('debian')
+  include_recipe 'apt'
+
+  package %w(libapr1 libdbi1 libcap2)
+  package 'libperl5.14' if node['platform_version'] == '12.04'
+  package 'libperl5.22' if node['platform_version'] == '16.04'
+end
+
+# => Download NXLog Package
+nxpkg = remote_file 'NXLog Package' do
+  path ::File.join(Chef::Config[:file_cache_path], ::File.basename(node['nxlog']['url']))
+  source node['nxlog']['url']
+  checksum node['nxlog']['checksum']
+  action :create
+  notifies :install, 'package[nxlog]', :immediately
+end
+
+# => Install NXLog from Package
+package 'nxlog' do
+  source nxpkg.path
+  provider Chef::Provider::Package::Dpkg if platform_family?('debian')
+  retries 1 if platform_family?('debian')
+  action :nothing
+end
+
+# => NXLog Configuration Directory
+directory 'NXLog Configuration Directory' do
+  path node['nxlog']['conf_dir']
+  mode 0755
+  recursive true
+  action :create
+end
+
+# => NXLog SSL/TLS Directory
+directory 'NXLog SSL/TLS Directory' do
+  path node['nxlog']['ssl_dir']
+  mode 0750
+  owner 'root'
+  group node['nxlog']['group']
+  action :create
+end
+
+# => Deploy NXLog Configuration
+template 'NXLog Configuration' do
+  path node['nxlog']['config']
+  source 'nxlog.conf.erb'
+  mode 0640
+  group node['nxlog']['group']
+  action :create
+  notifies :restart, 'service[nxlog]', :delayed
+end
+
+link '/etc/nxlog.conf' do
+  to node['nxlog']['config']
+  only_if { platform_family?('rhel') }
+end
+
+# => Start NXLog Service
+service 'nxlog' do
+  action [:enable, :start]
+end
