@@ -17,6 +17,7 @@ when 'debian'
   case node['platform_version']
   when '12.04'
     default['nxlog']['url'] = 'http://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1716_ubuntu_1204_amd64.deb'
+    default['nxlog']['checksum'] = 'eb53da18970bc1336dcdcb5fe51a46f5845fa6c52031b73e5eab04207cdd9808'
   when '16.04'
     default['nxlog']['url'] = 'http://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1716_ubuntu_1604_amd64.deb'
     default['nxlog']['checksum'] = '1820511ae580d87f91a43ec0a7482c6b2f639ad4a825448f7f904616561a706b'
