@@ -27,6 +27,9 @@ end
 # => NXLog Settings
 #
 default['nxlog'].tap do |nxlog|
+  # => Enable/Disable NXLog
+  nxlog['enabled']   = true
+
   nxlog['user']      = 'nxlog'
   nxlog['group']     = 'nxlog'
 

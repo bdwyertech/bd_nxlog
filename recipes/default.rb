@@ -77,5 +77,14 @@ end
 
 # => Start NXLog Service
 service 'nxlog' do
-  action [:enable, :start]
+  action node['nxlog']['enabled'] ? [:enable, :start] : [:disable, :stop]
+end
+
+# => Setup Log Rotation
+logrotate_app 'nxlog' do
+  path node['nxlog']['log_file']
+  options %w(compress copytruncate daily dateext missingok notifempty sharedscripts)
+  frequency 'daily'
+  rotate 60
+  create "0640 #{node['nxlog']['user']} #{node['nxlog']['group']}"
 end

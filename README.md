@@ -1,9 +1,11 @@
 # bd_nxlog
 
+[![Cookbook](http://img.shields.io/cookbook/v/bd_nxlog.svg)][cookbook]
 [![Build Status](http://img.shields.io/travis/bdwyertech/bd_nxlog.svg)][travis]
 [![Gitter](https://img.shields.io/badge/Gitter-bdwyertech%2Fbd_nxlog-brightgreen.svg)][gitter]
 [![GitHub license](https://img.shields.io/badge/license-apachev2-blue.svg)][license]
 
+[cookbook]: https://supermarket.chef.io/cookbooks/bd_nxlog
 [travis]: http://travis-ci.org/bdwyertech/bd_nxlog
 [gitter]: https://gitter.im/bdwyertech/bd_nxlog
 [license]: https://raw.githubusercontent.com/bdwyertech/bd_nxlog/master/LICENSE
@@ -50,7 +52,7 @@ end
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/bdwyertech/bd_nxlog. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bdwyertech/bd_nxlog.  Please use the [Gitter Chat](https://gitter.im/bdwyertech/bd_nxlog) instead of filing an issue for questions.  This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
