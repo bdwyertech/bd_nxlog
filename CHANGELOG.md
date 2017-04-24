@@ -4,6 +4,9 @@ This file is used to list changes made in each version of the `bd_nxlog` cookboo
 
 v0.1.2 (2017-04-24)
 -------------------
+### Enhancements
+- Add ability to add NXLog to groups with an attribute
+
 ### Fixes
 - Ensure correct permissions on NXLog log directory so logrotate does not complain
 - Add missing checksum

@@ -40,4 +40,8 @@ default['nxlog'].tap do |nxlog|
   nxlog['config']   = '/etc/nxlog/nxlog.conf'
   nxlog['conf_dir'] = '/etc/nxlog/conf.d'
   nxlog['ssl_dir']  = '/etc/nxlog/ssl'
+
+  # => Groups to add NXLog to (key = Name, value = Description)
+  # nxlog['groups']['adm'] = 'Typical Group for Reading Logs'
+  nxlog['groups'] = {}
 end

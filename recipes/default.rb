@@ -98,3 +98,13 @@ logrotate_app 'nxlog' do
   rotate 60
   create "0640 #{node['nxlog']['user']} #{node['nxlog']['group']}"
 end
+
+# => Add NXLog to Groups
+node['nxlog']['groups'].each do |k, _v|
+  group "Add NXLog to #{k}" do
+    group_name k.to_s
+    append true
+    members [node['nxlog']['user']]
+    action :manage
+  end
+end

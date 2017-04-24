@@ -1,7 +1,7 @@
 name 'bd_nxlog'
 maintainer 'Brian Dwyer - Intelligent Digital Services'
 maintainer_email 'bd@bdwyertech.net'
-license 'apachev2'
+license 'Apache-2.0'
 description 'Installs/Configures bd_nxlog'
 long_description 'Installs/Configures bd_nxlog'
 version '0.1.2'
