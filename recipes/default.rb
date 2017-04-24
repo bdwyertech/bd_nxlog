@@ -51,6 +51,16 @@ directory 'NXLog Configuration Directory' do
   action :create
 end
 
+# => NXLog Log Directory
+directory 'NXLog Log Directory' do
+  path ::File.dirname(node['nxlog']['log_file'])
+  mode '2750'
+  owner node['nxlog']['user']
+  group node['nxlog']['group']
+  action :create
+  only_if { ::File.basename(path) == 'nxlog' }
+end
+
 # => NXLog SSL/TLS Directory
 directory 'NXLog SSL/TLS Directory' do
   path node['nxlog']['ssl_dir']

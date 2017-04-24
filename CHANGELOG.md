@@ -2,6 +2,12 @@ BD-NXLog Changelog
 =========================
 This file is used to list changes made in each version of the `bd_nxlog` cookbook.
 
+v0.1.2 (2017-04-24)
+-------------------
+### Fixes
+- Ensure correct permissions on NXLog log directory so logrotate does not complain
+- Add missing checksum
+
 v0.1.1 (2017-04-05)
 -------------------
 ### Enhancements
