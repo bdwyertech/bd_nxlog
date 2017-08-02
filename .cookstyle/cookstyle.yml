@@ -1,4 +1,5 @@
 AllCops:
+  TargetRubyVersion: 2.0
   Exclude:
     - vendor/**/*
     - Guardfile
@@ -13,15 +14,19 @@ Style/FileName:
   Enabled: false
 Style/Alias:
   Enabled: false
-Style/SpaceBeforeFirstArg:
+Layout/SpaceBeforeFirstArg:
   Enabled: false
 Style/ClassAndModuleChildren:
+  Enabled: false
+Style/DoubleNegation:
   Enabled: false
 
 # disable all the length cops as they're not appropriate for cookbooks
 LineLength:
   Enabled: false
 MethodLength:
+  Enabled: false
+BlockLength:
   Enabled: false
 Metrics/AbcSize:
   Enabled: false
@@ -46,7 +51,7 @@ Style/NumericLiterals:
 # This often triggers no matter what you do with inspec/serverspec matchers
 Lint/AmbiguousRegexpLiteral:
   Exclude:
-    - 'test/**/*'
+    - '**/test/**/*'
 
 # some names are not ascii and this prevents copyright comments
 Style/AsciiComments:
@@ -98,7 +103,7 @@ Style/NumericPredicate:
   EnforcedStyle: comparison
 
 # this is bad %w(something     another_thing   one_more)
-Style/SpaceInsideArrayPercentLiteral:
+Layout/SpaceInsideArrayPercentLiteral:
   Enabled: true
 
 # disable this until there's an autocorrect (0.47 has one)
@@ -107,4 +112,29 @@ Bundler/OrderedGems:
 
 # There's no reason to have a gem listed twice
 Bundler/DuplicatedGem:
+  Enabled: true
+
+# This results in very confusing code to read with little perf benefit
+Performance/Casecmp:
+  Enabled: false
+
+# maintain the previous array behavior in previous cookstyle releases
+Style/PercentLiteralDelimiters:
+   PreferredDelimiters:
+    '%':  ()
+    '%i': ()
+    '%I': ()
+    '%q': ()
+    '%Q': ()
+    '%r': '{}'
+    '%s': ()
+    '%w': ()
+    '%W': ()
+    '%x': ()
+
+# backwards conditions are hard to read
+Style/YodaCondition:
+  Enabled: true
+
+Layout/EmptyLinesAroundExceptionHandlingKeywords:
   Enabled: true
