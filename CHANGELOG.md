@@ -2,6 +2,11 @@ BD-NXLog Changelog
 =========================
 This file is used to list changes made in each version of the `bd_nxlog` cookbook.
 
+v0.1.3 (2017-08-02)
+-------------------
+### Fixes
+- Update download URL's
+
 v0.1.2 (2017-04-24)
 -------------------
 ### Enhancements
