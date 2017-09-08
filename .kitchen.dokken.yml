@@ -19,7 +19,7 @@ verifier:
 platforms:
 - name: centos-7
   driver:
-    image: centos:7
+    image: dokken/centos-7
     platform: rhel
     pid_one_command: /usr/lib/systemd/systemd
     security_opt:
@@ -29,18 +29,9 @@ platforms:
       - RUN yum -y install lsof initscripts net-tools systemd-sysv wget which
       - RUN yum -y install crontabs selinux-policy-targeted
 
-- name: ubuntu-12.04
-  driver:
-    image: ubuntu:12.04
-    pid_one_command: /sbin/init
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
-      - RUN /usr/bin/apt-get install apt-transport-https lsb-release procps net-tools -y
-      - RUN /usr/bin/apt-get install cron -y
-
 - name: ubuntu-16.04
   driver:
-    image: ubuntu:16.04
+    image: dokken/ubuntu-16.04
     pid_one_command: /bin/systemd
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
