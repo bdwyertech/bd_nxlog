@@ -3,15 +3,16 @@ image: chef/chefdk:current
 variables:
   DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay
+  KITCHEN_LOCAL_YAML: .kitchen.dokken.yml
 
 services:
   - docker:dind
 
 before_script:
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
-  - /opt/chefdk/embedded/bin/chef --version
-  - /opt/chefdk/embedded/bin/cookstyle --version
-  - /opt/chefdk/embedded/bin/foodcritic --version
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
   - apt-get update && apt-get install rsync -y
 
 test:ChefDK:
@@ -23,6 +24,6 @@ test:ChefDK:
     - chef exec delivery local lint
     - chef exec delivery local syntax
     - chef exec delivery local unit
-    - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml /opt/chefdk/embedded/bin/kitchen verify default -l debug || true
+    - chef exec delivery local smoke
   tags:
     - chefdk

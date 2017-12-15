@@ -36,7 +36,7 @@ nxpkg = remote_file 'NXLog Package' do
 end
 
 # => Install NXLog from Package
-package 'nxlog' do
+package 'nxlog' do # ~FC109
   source nxpkg.path
   provider Chef::Provider::Package::Dpkg if platform_family?('debian')
   retries 1 if platform_family?('debian')
