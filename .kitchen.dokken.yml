@@ -21,13 +21,12 @@ platforms:
   driver:
     image: centos:7
     platform: rhel
-    pid_one_command: /usr/sbin/init
+    pid_one_command: /usr/lib/systemd/systemd
     # security_opt:
     #   - label:enable # Enable SELinux
     intermediate_instructions:
       - ENV container docker
-      - RUN yum clean all
-      - RUN yum -y install lsof initscripts net-tools systemd-sysv wget which
+      - RUN yum clean all && yum -y install lsof initscripts net-tools systemd-sysv wget which
       - RUN yum -y install crontabs selinux-policy-targeted
 
 - name: ubuntu-16.04
@@ -36,9 +35,8 @@ platforms:
     pid_one_command: /lib/systemd/systemd
     intermediate_instructions:
       - ENV container docker
-      - RUN /usr/bin/apt-get update
-      - RUN /usr/bin/apt-get install apt-transport-https lsb-release net-tools procps systemd-sysv -y
-      - RUN /usr/bin/apt-get install cron -y
+      - RUN apt-get update && apt-get install apt-transport-https lsb-release net-tools procps systemd-sysv -y
+      - RUN apt-get install cron -y
 
 #
 # Test Suites

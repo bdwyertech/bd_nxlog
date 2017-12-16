@@ -24,6 +24,7 @@ test:ChefDK:
     - chef exec delivery local lint
     - chef exec delivery local syntax
     - chef exec delivery local unit
-    - chef exec delivery local smoke
+    - chef exec kitchen test default
+    - chef exec kitchen test resource
   tags:
     - chefdk
