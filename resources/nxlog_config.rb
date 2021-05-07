@@ -19,6 +19,7 @@
 
 # => Define the Resource Name
 resource_name :nxlog_config
+provides :nxlog_config
 
 # => Define the Resource Properties
 property :config, String, name_property: true

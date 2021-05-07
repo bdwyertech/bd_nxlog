@@ -4,7 +4,7 @@ maintainer_email 'bd@bdwyertech.net'
 license 'Apache-2.0'
 description 'Installs/Configures bd_nxlog'
 long_description 'Installs/Configures bd_nxlog'
-version '0.1.3'
+version '0.1.4'
 
 issues_url 'https://github.com/bdwyertech/bd_nxlog/issues' if respond_to?(:issues_url)
 source_url 'https://github.com/bdwyertech/bd_nxlog' if respond_to?(:source_url)

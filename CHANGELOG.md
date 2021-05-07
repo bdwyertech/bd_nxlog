@@ -2,6 +2,11 @@ BD-NXLog Changelog
 =========================
 This file is used to list changes made in each version of the `bd_nxlog` cookbook.
 
+v0.1.4 (2021-05-06)
+-------------------
+### Fixes
+- add 'provides' in resource name for chef-client v16 compatibility
+
 v0.1.3 (2017-08-02)
 -------------------
 ### Fixes
